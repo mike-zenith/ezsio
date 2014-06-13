@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>EZSio test</title>
+    <script src="/socket.io/socket.io.js"></script>
+
+    <style>
+        .log {
+            font-family: Consolas, Menlo, Monaco, monospace;
+            font-size: 10px;
+            background: black;
+            color: limegreen;
+        }
+
+        .event {
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+<h1>EZSio</h1>
+    <div>
+        <h3>Connect</h3>
+        <form class="connect">
+            <div>
+                <input type="text" name="sio-host" placeholder="Socket.io host" value="">
+            </div>
+            <button type="submit">Connect</button>
+        </form>
+        <h3>Send event</h3>
+        <form class="event">
+            <div>
+                <input type="text" name="name" placeholder="name" value="">
+                <textarea name="data" placeholder="data">
+                </textarea>
+            </div>
+            <button type="submit">Send</button>
+        </form>
+    </div>
+
+    <div class="log"></div>
+
+<script>
+;(function() {
+    var host = '//' + window.location.host;
+    var form = document.querySelector('form.connect');
+    var log = document.querySelector('.log');
+
+    var event = document.querySelector('form.event');
+
+    var addLog = function (data, type) {
+        if ({}.toString.call(data) === '[object Object]') {
+            data = JSON.stringify(data);
+        }
+        if (type) {
+            data = type + ': ' + data;
+        }
+        var el = document.createElement('div');
+        el.appendChild(document.createTextNode(data));
+        log.appendChild(el);
+    };
+
+    var start = function (host, settings) {
+        window.socket = io(host, settings || {});
+        socket.on('hello', function (data) {
+            addLog(data);
+        });
+        socket.on('echo', function (data) {
+            addLog(data, 'echo');
+        });
+        socket.on('message', function (data) {
+            addLog(data, 'message');
+        });
+
+        event.setAttribute('style', 'display: block');
+    };
+
+    event.addEventListener('submit', function (e) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        var type = document.querySelector('form.event input').value;
+        var data = document.querySelector('form.event textarea').value;
+        addLog(data, 'sending - ' + type);
+        window.socket.emit(type, JSON.parse(data));
+    });
+
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+
+        var host = document.querySelector('form.connect input[name=sio-host]').getAttribute('value');
+        addLog(host, 'connecting to');
+        start(host);
+    });
+})();
+</script>
+
+</body>
+</html>

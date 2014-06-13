@@ -1,0 +1,15 @@
+{
+    "name": "ezsio",
+    "version": "0.0.1",
+    "description": "RisingStars Api",
+    "author": "Imre Juhasz <awe.zenith@gmail.com>",
+    "main": "index.js",
+    "scripts": {
+        "test": "grunt test",
+        "start": "node index.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/mike-zenith/ezsio.git"
+    }
+}
