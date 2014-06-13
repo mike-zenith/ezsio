@@ -26,7 +26,7 @@ io.on('connection', function (socket) {
         socket.emit('echo', data);
     });
 
-    socket.on('message', function (data) {
-        console.log('-> message', data);
+    socket.on('call:handshake', function (data) {
+        socket.broadcast.emit('call:handshake', data);
     });
 });
