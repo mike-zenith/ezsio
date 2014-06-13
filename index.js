@@ -1,9 +1,9 @@
 var app = require('http').createServer(handler);
 var io = require('socket.io')(app);
 var fs = require('fs');
-
-app.listen(80, function () {
-    console.log('listening...');
+var port = Number(process.env.PORT || 5000);
+app.listen(port, function () {
+    console.log('listening on ', port);
 });
 
 function handler (req, res) {

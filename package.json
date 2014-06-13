@@ -7,6 +7,9 @@
   "scripts": {
     "start": "node index.js"
   },
+  "engines": {
+      "node": "0.10.x"
+  },
   "repository": {
     "type": "git",
     "url": "git://github.com/mike-zenith/ezsio.git"
