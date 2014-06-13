@@ -5,8 +5,7 @@
     "author": "Imre Juhasz <awe.zenith@gmail.com>",
     "main": "index.js",
     "scripts": {
-        "test": "grunt test",
-        "start": "node index.js"
+        "start": "npm install && node index.js"
     },
     "repository": {
         "type": "git",
