@@ -1,14 +1,17 @@
 {
-    "name": "ezsio",
-    "version": "0.0.1",
-    "description": "RisingStars Api",
-    "author": "Imre Juhasz <awe.zenith@gmail.com>",
-    "main": "index.js",
-    "scripts": {
-        "start": "npm install && node index.js"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git://github.com/mike-zenith/ezsio.git"
-    }
+  "name": "ezsio",
+  "version": "0.0.1",
+  "description": "RisingStars Api",
+  "author": "Imre Juhasz <awe.zenith@gmail.com>",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mike-zenith/ezsio.git"
+  },
+  "dependencies": {
+    "socket.io": "^1.0.4"
+  }
 }
